@@ -25,3 +25,16 @@ Route::get('/admin2', function () {
 Route::get('/home', function () {
     return view('frontend/index');
 });
+
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+
+    Route::group(['prefix' => 'Category'], function () {
+        Route::get('category/{id?}', 'CategoryController@add_category')->name('add-category');
+        Route::post('category', 'CategoryController@add_category')->name('add-category');
+        Route::any('show-category', 'CategoryController@show_category')->name('show-category');
+        Route::any('edit-category/{id?}', 'CategoryController@edit_category')->name('edit-category');
+        Route::any('delete-category/{id}', 'CategoryController@delete_category')->name('delete-category');
+        Route::any('update-category', 'CategoryController@update_category')->name('update-category');
+    });
+
+});

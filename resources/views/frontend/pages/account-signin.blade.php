@@ -13,15 +13,16 @@
               </div>
               <hr>
               <h3 class="font-size-base pt-4 pb-2">Or using form below</h3>
-              <form class="needs-validation" novalidate>
+              <form class="needs-validation" novalidate method="post" action="{{route('login')}}">
+                  @csrf
                 <div class="input-group-overlay form-group">
                   <div class="input-group-prepend-overlay"><span class="input-group-text"><i class="czi-mail"></i></span></div>
-                  <input class="form-control prepended-form-control" type="email" placeholder="Email" required>
+                  <input class="form-control prepended-form-control" name="email" type="email" placeholder="Email" required>
                 </div>
                 <div class="input-group-overlay form-group">
                   <div class="input-group-prepend-overlay"><span class="input-group-text"><i class="czi-locked"></i></span></div>
                   <div class="password-toggle">
-                    <input class="form-control prepended-form-control" type="password" placeholder="Password" required>
+                    <input class="form-control prepended-form-control" name="password" type="password" placeholder="Password" required>
                     <label class="password-toggle-btn">
                       <input class="custom-control-input" type="checkbox"><i class="czi-eye password-toggle-indicator"></i><span class="sr-only">Show password</span>
                     </label>
@@ -29,7 +30,7 @@
                 </div>
                 <div class="d-flex flex-wrap justify-content-between">
                   <div class="custom-control custom-checkbox">
-                    <input class="custom-control-input" type="checkbox" checked id="remember_me">
+                    <input class="custom-control-input" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} id="remember_me">
                     <label class="custom-control-label" for="remember_me">Remember me</label>
                   </div><a class="nav-link-inline font-size-sm" href="account-password-recovery.php">Forgot password?</a>
                 </div>
@@ -41,7 +42,7 @@
             </div>
           </div>
         </div>
-        
+
       </div>
     </div>
         <!-- Toolbar for handheld devices-->

@@ -33,9 +33,31 @@
 <!-- PAGE SCRIPTS -->
 <script src="{{asset('js/dashboard2.js')}}"></script>
 
+<script src="https://cdn.ckeditor.com/ckeditor5/22.0.0/classic/ckeditor.js"></script>
 <script>
-
+    ClassicEditor
+        .create( document.querySelector( '#title' ) )
+        .then( editor => {
+            console.log( editor );
+        } ),
+        ClassicEditor
+    .create( document.querySelector( '#desc' ) )
+        .then( editor => {
+            console.log( editor );
+        } ),
+        ClassicEditor
+            .create( document.querySelector( '#keyword' ) )
+            .then( editor => {
+                console.log( editor );
+            } ),
+        ClassicEditor
+            .create( document.querySelector( '#desc1' ) )
+            .then( editor => {
+                console.log( editor );
+            } )
 </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 
 </body>

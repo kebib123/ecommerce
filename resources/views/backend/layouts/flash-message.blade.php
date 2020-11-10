@@ -39,7 +39,7 @@
 @push('scripts')
 <script>
     $(document).ready(function (){
-        $('.alert').hide(2000);
+        $('.alert').hide(8000);
     });
 </script>
 @endpush

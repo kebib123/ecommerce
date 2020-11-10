@@ -1,4 +1,4 @@
-@extends('frontend.include.master-login')
+@extends('frontend.include.master')
 @section('content')
     <!-- Page Title-->
     <div class="page-title-overlap bg-dark pt-4">
@@ -115,7 +115,7 @@
         </section>
       </div>
     </div>
-     
+
 
 
     <!-- Open Ticket Modal-->

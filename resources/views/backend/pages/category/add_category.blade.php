@@ -34,6 +34,22 @@
                                         </select>
 
                                     </div>
+                                    <div class="form-group">
+                                        <label for="formGroupExampleInput">Image:</label>
+                                        <input type="file" name="image" class="form-control" id="formGroupExampleInput">
+                                    </div>
+
+                                    <div class="form-group special-link">
+                                        <label for="name" class="col-sm-2 col-md-3 control-label">Special:</label>
+                                        <select class="form-control" name="is_special" >
+                                            <option selected disabled>Select any option</option>
+                                            <option value="0">No</option>
+                                            <option value="1">Yes</option>
+                                        </select>
+                                        <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
+                                  Choose if this is in home page </span>
+                                    </div>
+
 
                                 </div>
                                 <!-- /.box-body -->
@@ -63,7 +79,8 @@
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Parent</th>
-                                <th>Created at</th>
+                                <th>Image</th>
+                                <th>Special</th>
                                 <th class="sorting-false">Action</th>
                             </tr>
                             </thead>
@@ -72,7 +89,18 @@
                                 <td>{{$key+=1}}</td>
                                 <td>{{$value->name}}</td>
                                 <td>{{App\Model\Category::where('id','=',$value->parent_id)->first() ? App\Model\Category::where('id','=',$value->parent_id)->first()->name : '-'}}</td>
-                                <td>{{\Illuminate\Support\Carbon::now()}}</td>
+                               <td><img src="{{asset('images/categories/'.$value->image)}}" width="150px"></td>
+                                <td>
+                                    @if(($value->is_special)==0)
+                                        <button class="btn btn-danger btn btn-sm" name="inactive"><i
+                                                class="fa fa-times"></i>
+                                        </button>
+                                    @else
+                                        <button class="btn btn-success btn btn-sm" name="active"><i
+                                                class="fa fa-check"></i>
+                                        </button>
+                                    @endif
+                                </td>
                                 <td>
                                     <a class="btn btn-danger confirm"
                                        href="{{route('delete-category',$value->id)}}"
@@ -127,6 +155,23 @@
 
                                                                             </div>
 
+                                                                            <div class="form-group">
+                                                                                <label for="formGroupExampleInput">Current Image:</label>
+                                                                                <img src="{{asset('images/categories/'.$value->image)}}" width="100px">
+                                                                                <hr>
+                                                                                <input type="file" name="image" class="form-control" id="formGroupExampleInput">
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <label for="name" class="control-label">Special:</label>
+                                                                                <select class="form-control" name="is_special" id="isSpecial">
+                                                                                    <option @if($value->is_special==0) selected @endif  value="0">No</option>
+                                                                                    <option @if($value->is_special==1) selected @endif value="1">Yes</option>
+                                                                                </select>
+                                                                                <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
+                                                                                          Choose if this is in home page </span>
+                                                                            </div>
+
                                                                         </div>
                                                                         <!-- /.box-body -->
                                                                         <div class="box-footer">
@@ -140,53 +185,6 @@
                                                         <!-- /.box -->
                                                     </div>
                                                 </form>
-
-{{--                                                <form method="POST" action="{{route('category-edit')}}"--}}
-{{--                                                      accept-charset="UTF-8" class=""--}}
-{{--                                                      enctype="multipart/form-data">--}}
-{{--                                                    @csrf--}}
-{{--                                                    <input type="hidden" name="id" value="{{$value->id}}">--}}
-
-
-{{--                                                    <div class="box box-default">--}}
-{{--                                                        <div class="box-body">--}}
-{{--                                                            <div class="row">--}}
-{{--                                                                <div class="col-sm-4">--}}
-{{--                                                                    <div class="form-group ">--}}
-{{--                                                                        <label for="name" class="control-label">Category--}}
-{{--                                                                            *</label>--}}
-{{--                                                                        <input class="form-control" name="category"--}}
-{{--                                                                               type="text"--}}
-{{--                                                                               id="name" value="{{$value->name}}">--}}
-{{--                                                                    </div>--}}
-{{--                                                                </div>--}}
-{{--                                                            </div>--}}
-{{--                                                            <div class="col-sm-4">--}}
-{{--                                                                <div class="form-group ">--}}
-{{--                                                                    <label for="name" class="control-label">Main Category--}}
-{{--                                                                        *</label>--}}
-{{--                                                                    <select class="form-control" name="main_category" type="text" id="name">--}}
-{{--                                                                        <option selected>Select Main Category*</option>--}}
-{{--                                                                        <option value="explore">Explore</option>--}}
-{{--                                                                        <option value="things">Things to do</option>--}}
-{{--                                                                        <option value="travel">Travel News</option>--}}
-{{--                                                                        <option value="blog">Blog</option>--}}
-{{--                                                                    </select>--}}
-{{--                                                                </div>--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-{{--                                                        <button type="submit" class="btn btn-primary">Update--}}
-{{--                                                            Category--}}
-{{--                                                        </button>--}}
-{{--                                                    </div>--}}
-
-
-
-
-
-
-{{--                                            </form>--}}
-                                            <!-- /.box-body -->
                                         </div>
 
                                     </div>
@@ -199,7 +197,8 @@
                                 <th>#</th>
                                 <th>Name</th>
                                 <th class="sorting-false">Parent</th>
-                                <th>Created at</th>
+                                <th>Image</th>
+                                <th>Special</th>
                                 <th class="sorting-false">Action</th>
                             </tr>
                             </tfoot>

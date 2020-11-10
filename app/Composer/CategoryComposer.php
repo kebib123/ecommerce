@@ -1,9 +1,6 @@
 <?php
 
-
 namespace App\Composer;
-
-
 use App\Repositories\Contracts\CategoryRepository;
 use Illuminate\View\View;
 
@@ -19,7 +16,7 @@ class CategoryComposer
     public function compose(View $view)
     {
         $category =$this->category->getCategories();
-
+//
         $view->with([
             'cat'=>$category
         ]);

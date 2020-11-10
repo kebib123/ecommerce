@@ -18,5 +18,16 @@ class Category extends Model
             ->saveSlugsTo('slug');
     }
 
-    protected $fillable=['parent_id','name','slug'];
+    protected $fillable=['parent_id','name','slug','image','is_special'];
+
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class,'product_categories');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(Category::class, 'parent_id');
+    }
 }
